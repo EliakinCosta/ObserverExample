@@ -7,20 +7,23 @@ Subject::Subject()
 
 }
 
-void Subject::notify()
+void Subject::notify(QString category)
 {
-    foreach (IObserver *observer, m_observers)
+    foreach (IObserver *observer, m_observers.value(category))
     {
         observer->update(this);
     }
 }
 
-void Subject::attach(IObserver *observer)
+void Subject::attach(IObserver *observer, QString category)
 {
-    m_observers.append(observer);
+    if (!m_observers.contains(category))
+        m_observers.insert(category, QList<IObserver *>());
+    m_observers[category].append(observer);
 }
 
-void Subject::dettach(IObserver *observer)
+void Subject::dettach(IObserver *observer, QString category)
 {
-    m_observers.removeOne(observer);
+    if (m_observers.contains(category))
+        m_observers[category].removeOne(observer);
 }

@@ -1,21 +1,23 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 
+#include <QMap>
 #include <QList>
 
 class IObserver;
+class QString;
 
 class Subject
 {
 public:
     virtual ~Subject(){}
-    virtual void notify();
-    void attach(IObserver *observer);
-    void dettach(IObserver *observer);
+    virtual void notify(QString category="");
+    void attach(IObserver *observer, QString category="");
+    void dettach(IObserver *observer, QString category="");
 protected:
     Subject();
 private:
-    QList<IObserver *> m_observers;
+    QMap<QString, QList<IObserver *> > m_observers;
 };
 
 #endif // SUBJECT_H

@@ -3,12 +3,14 @@
 
 #include "subject.h"
 
+class QString;
+
 class EleicaoSubject : public Subject
 {
 public:
     EleicaoSubject();
     virtual ~EleicaoSubject(){}
-    void registrarVoto();
+    void registrarVoto(QString category);
     int quantidadeVotos();
 private:
     int m_quantidadeVotos;

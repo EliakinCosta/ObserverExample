@@ -5,10 +5,10 @@ EleicaoSubject::EleicaoSubject():m_quantidadeVotos(0)
 
 }
 
-void EleicaoSubject::registrarVoto()
+void EleicaoSubject::registrarVoto(QString category)
 {
     m_quantidadeVotos++;
-    notify();
+    notify(category);
 }
 
 int EleicaoSubject::quantidadeVotos()
