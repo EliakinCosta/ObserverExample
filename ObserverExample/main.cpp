@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
 //    A quantidade de votos agora e:  2
 //    A quantidade de votos agora e:  2
 
-
     return 0;
 }
 
