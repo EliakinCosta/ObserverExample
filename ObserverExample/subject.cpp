@@ -7,20 +7,27 @@ Subject::Subject()
 
 }
 
-void Subject::notify()
+void Subject::notify(QString category)
 {
-    foreach (IObserver *observer, m_observers)
+    if (category.isEmpty())
+        category = "uncategorized";
+
+    foreach (IObserver *observer, m_observers.values(category))
     {
         observer->update(this);
     }
 }
 
-void Subject::attach(IObserver *observer)
+void Subject::attach(IObserver *observer, QString category)
 {
-    m_observers.append(observer);
+    if (category.isEmpty())
+        category = "uncategorized";
+    m_observers.insert(category, observer);
 }
 
-void Subject::dettach(IObserver *observer)
+void Subject::dettach(IObserver *observer, QString category)
 {
-    m_observers.removeOne(observer);
+    if (category.isEmpty())
+        category = "uncategorized";
+    m_observers.remove(category, observer);
 }

@@ -12,14 +12,17 @@ int main(int argc, char *argv[])
     IObserver *observer2 = new DisplayObserver;
     EleicaoSubject *subject = new EleicaoSubject;
 
-    subject->attach(observer1);
+    subject->attach(observer1, "Teste");
+    subject->attach(observer2, "Teste");
+
     subject->attach(observer2);
 
     subject->registrarVoto();
+    subject->registrarVoto("Teste");
+//    A quantidade de votos agora e:  1
+//    A quantidade de votos agora e:  2
+//    A quantidade de votos agora e:  2
 
-    subject->dettach(observer1);
-
-    subject->registrarVoto();
 
     return 0;
 }
